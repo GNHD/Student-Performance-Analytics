@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance </title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Student Performance </h2>
+
+        
+        <div class="section">
+            <h3>Upload CSV File</h3>
+            <input type="file" id="csvFile" accept=".csv">
+            <button onclick="uploadCSV()">Predict from CSV</button>
+            <p id="csvMessage"></p>
+        </div>
+
+        
+        <div class="section">
+            <h3>Enter Student Data</h3>
+            <form id="manualForm">
+                <label>Attendance Percentage:</label>
+                <input type="number" id="attendance" step="0.1" required>
+
+                <label>Assignment Score:</label>
+                <input type="number" id="assignment" step="0.1" required>
+
+                <label>Quiz Score:</label>
+                <input type="number" id="quiz" step="0.1" required>
+
+                <label>Final Exam Score:</label>
+                <input type="number" id="final_exam" step="0.1" required>
+
+                <label>Study Hours:</label>
+                <input type="number" id="study_hours" step="0.1" required>
+
+                <button type="button" onclick="predictSingle()">Predict Performance</button>
+            </form>
+            <p id="singlePrediction"></p>
+        </div>
+
+        
+        <div class="section">
+            <h3>Predicted Results</h3>
+            <table id="predictionTable">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Predicted Performance</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
