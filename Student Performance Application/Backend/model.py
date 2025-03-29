@@ -1,39 +1,59 @@
 import joblib
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import StandardScaler
 
 # Define required columns
-required_columns = ['Attendance_Percentage', 'Assignment_Scores', 'Quiz_Scores', 'Final_Exam_Score', 'Study_Hours']
+REQUIRED_COLUMNS = ['Attendance_Percentage', 'Assignment_Scores', 'Quiz_Scores', 'Final_Exam_Score', 'Study_Hours']
 
 def preprocess_data(df):
+    """
+    Preprocesses the dataset by converting columns to numeric, handling missing values, and scaling features.
+    """
     df = df.copy()
-    for col in required_columns:
+
+    # Convert required columns to numeric, replacing errors with NaN
+    for col in REQUIRED_COLUMNS:
         df[col] = pd.to_numeric(df[col], errors='coerce')
-    df[required_columns] = df[required_columns].fillna(df[required_columns].mean())
-    
+
+    # Fill missing values with column mean
+    df[REQUIRED_COLUMNS] = df[REQUIRED_COLUMNS].fillna(df[REQUIRED_COLUMNS].mean())
+
+    # Ensure the target variable is numeric
+    df['Final_Performance'] = pd.to_numeric(df['Final_Performance'], errors='coerce').fillna(0)
+
+    # Scale the feature values
     scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(df[required_columns])
+    X_scaled = scaler.fit_transform(df[REQUIRED_COLUMNS])
 
     return X_scaled, df['Final_Performance'], scaler
 
-def train_model():
+def train_and_save_rf_model():
+    """
+    Trains a Random Forest model and saves it along with the scaler.
+    """
+    # Load dataset
     data = pd.read_csv("Data/student_performance_data.csv")
 
+    # Preprocess data
     X, y, scaler = preprocess_data(data)
-    y = pd.to_numeric(y, errors='coerce').fillna(0)
 
+    # Split data into training and test sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    model = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, random_state=42)
-    model.fit(X_train, y_train)
+    # Train Random Forest model
+    rf_model = RandomForestRegressor(n_estimators=100, random_state=42)
+    rf_model.fit(X_train, y_train)
 
-    # Save model, scaler, and required columns
-    joblib.dump((model, scaler, required_columns), "student_performance_model.pkl")
+    # Save the trained model
+    joblib.dump(rf_model, "student_performance_rf.pkl")
+    print("✅ Random Forest model saved as 'student_performance_rf.pkl'")
 
-    print("✅ Model Training Complete! Gradient Boosting Regressor Saved.")
+    # Save the scaler (specific to Random Forest)
+    joblib.dump(scaler, "scaler_rf.pkl")
+    print("✅ Scaler saved as 'scaler_rf.pkl'")
 
 if __name__ == "__main__":
-    train_model()
+    train_and_save_rf_model()
 

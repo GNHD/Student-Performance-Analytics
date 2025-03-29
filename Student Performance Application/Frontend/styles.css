@@ -1,58 +1,204 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    background-color: #F2E5BF;
+    color: #000000;
+}
+
+/* 🔹 Navbar Styles */
+nav {
+    background-color: #257180;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* 🔹 Main Container */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
     text-align: center;
 }
 
-.container {
-    width: 50%;
-    margin: 20px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    color: #333;
-}
-
-.section {
+/* 🔹 Layout for Sections */
+.content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     margin-bottom: 20px;
 }
 
-input, button {
+/* 🔹 Box Styles */
+.box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    flex: 1;
+    min-width: 30%;
+    margin: 10px;
+    text-align: center;
+}
+
+/* 🔹 Button Styles */
+.button {
+    background-color: #FD8B51;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px 0; /* Fixed margin */
+    transition: background 0.3s;
+}
+
+.button:hover {
+    background-color: #CB6040;
+}
+
+/* 🔹 Form Styles */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    text-align: left;
+    margin: auto;
+}
+
+input, select {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
+    margin-top: 5px;
+    margin-bottom: 10px; /* Added margin for spacing */
+    border: 1px solid #257180;
     border-radius: 5px;
 }
 
-button {
-    background-color: #007BFF;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-table {
-    width: 100%;
+label {
+    font-weight: bold;
     margin-top: 10px;
+    display: block;
+}
+
+/* 🔹 Chart Container */
+.chart-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+}
+
+/* 🔹 Canvas Styling */
+canvas {
+    width: 100% !important;
+    height: auto !important;
+    background-color: white;
+}
+
+/* 🔹 Table Styles */
+#resultContainer {
+    display: none; /* Initially hidden */
+}
+
+#resultTable {
+    width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-th, td {
+#resultTable th, #resultTable td {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #257180;
+    text-align: left;
 }
 
-th {
-    background-color: #007BFF;
+#resultTable th {
+    background-color: #257180;
     color: white;
 }
+
+/* 🔹 Chart Colors */
+.chart-container canvas {
+    background-color: white;
+}
+
+/* Fixed: Apply deep teal color to bars properly */
+.chart-container .bar {
+    background-color: #257180 !important; 
+    border-color: #257180 !important;
+}
+
+/* 🔹 Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav ul {
+        flex-direction: column;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+    
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .box {
+        width: 100%;
+    }
+    
+    .chart-container, form {
+        width: 100%;
+    }
+}
+
+
+
+
+
+
