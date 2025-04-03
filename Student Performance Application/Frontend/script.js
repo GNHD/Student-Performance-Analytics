@@ -73,10 +73,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 resultContainer.style.display = "block";
 
                 // Update Graph with new data
-                updateManualChart(
-                    ["Attendance", "Assignment", "Quiz", "Final Exam", "Study Hours"], 
-                    [attendance, assignment, quiz, finalExam, studyHours]
-                );
+                // updateManualChart(
+                //     ["Attendance", "Assignment", "Quiz", "Final Exam", "Study Hours"], 
+                //     [attendance, assignment, quiz, finalExam, studyHours]
+                // );
 
             } else {
                 alert("⚠️ Prediction failed. Check API response.");
@@ -137,33 +137,33 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    function updateManualChart(labels, data) {
-        const ctx = document.getElementById("manualChart").getContext("2d");
+    // function updateManualChart(labels, data) {
+    //     const ctx = document.getElementById("manualChart").getContext("2d");
 
-        if (manualChart) {
-            manualChart.destroy();
-        }
+    //     if (manualChart) {
+    //         manualChart.destroy();
+    //     }
 
-        manualChart = new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: "Manual Entry Data",
-                    data: data,
-                    backgroundColor: ["#257180", "#F2E5BF", "#FD8B51", "#CB6040", "#75B1A9"],
-                    borderColor: ["#1F5E63", "#D9D0A3", "#E47E4D", "#A04E34", "#5E9A8A"],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: { beginAtZero: true }
-                }
-            }
-        });
-    }
+    //     manualChart = new Chart(ctx, {
+    //         type: "bar",
+    //         data: {
+    //             labels: labels,
+    //             datasets: [{
+    //                 label: "Manual Entry Data",
+    //                 data: data,
+    //                 backgroundColor: ["#257180", "#F2E5BF", "#FD8B51", "#CB6040", "#75B1A9"],
+    //                 borderColor: ["#1F5E63", "#D9D0A3", "#E47E4D", "#A04E34", "#5E9A8A"],
+    //                 borderWidth: 1
+    //             }]
+    //         },
+    //         options: {
+    //             responsive: true,
+    //             scales: {
+    //                 y: { beginAtZero: true }
+    //             }
+    //         }
+    //     });
+    // }
 
     function downloadTemplate() {
         const csvContent = "data:text/csv;charset=utf-8,Student_ID,Attendance_Percentage,Assignment_Scores,Quiz_Scores,Final_Exam_Score,Study_Hours\n";
