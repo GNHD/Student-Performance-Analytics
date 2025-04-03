@@ -88,7 +88,7 @@ nav ul li a:hover {
 /* 🔹 Form Styles */
 form {
     background: white;
-    padding: 20px;
+    padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 100%;
@@ -99,7 +99,7 @@ form {
 
 input, select {
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     margin-top: 5px;
     margin-bottom: 10px; /* Added margin for spacing */
     border: 1px solid #257180;
